@@ -11,7 +11,23 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: process.env.FRONTEND_URL || 'https://e-learning-application-tsf8.vercel.app' }));
+
+const allowedOrigins = [
+  ...((process.env.FRONTEND_URL || '').split(',').map((url) => url.trim()).filter(Boolean)),
+  'http://localhost:3000',
+  'https://e-learning-application-tsf8.vercel.app',
+  'https://e-learning-application-2.onrender.com',
+  'https://e-learning-application-hhp3.onrender.com',
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error(`CORS policy does not allow access from origin ${origin}`));
+  },
+  credentials: true,
+}));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);

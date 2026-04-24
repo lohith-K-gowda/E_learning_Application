@@ -1,4 +1,8 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? 'http://localhost:4000'
+    : 'https://e-learning-application-hhp3.onrender.com');
 
 const getToken = () => (typeof window !== 'undefined' ? localStorage.getItem('ellipsonic_token') : null);
 
