@@ -1,6 +1,9 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "framework": "nextjs",
-  "root": "frontend"
+  "projects": {
+    "frontend": {
+      "buildCommand": "npm run build",
+      "outputDirectory": ".next",
+      "framework": "nextjs"
+    }
+  }
 }
