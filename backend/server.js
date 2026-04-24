@@ -11,7 +11,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5000' }));
+app.use(cors({ origin: process.env.FRONTEND_URL || 'https://e-learning-application-tsf8.vercel.app' }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
